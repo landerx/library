@@ -16,7 +16,7 @@ nbproject/private/
 build/
 nbbuild/
 
-# the dist file could make some problems
+# the dist file could make some problems test
 # dist/
 nbdist/
 nbactions.xml
