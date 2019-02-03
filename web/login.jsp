@@ -16,9 +16,15 @@
     String invalidLogin = request.getParameter("invalidLogin");
     invalidLogin = invalidLogin != null ? invalidLogin : "";
 
+    String logout = request.getParameter("logout");
+    logout = logout != null ? "You have been logout sucesfully" : "";
+
+    String registered = request.getParameter("registered");
+    registered = registered != null? registered +" now you can login!" : "";
+
 %>
 
-<%= invalidLogin %>
+<%= registered %>
 
 <form method="post" action="login">
 
@@ -32,6 +38,12 @@
 
     <input type="submit" value="Wyślij"/>
 </form>
+
+<%= logout%>
+<%= invalidLogin %>
+
+<a href="register.jsp">Register</a>
+
 
 
 </body>

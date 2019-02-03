@@ -51,6 +51,12 @@ public class UsersDAO {
 		return userOpt.isPresent();
 	}
 
+	public static Optional<User> getByLogin(String login) {
+		return users.stream()
+				.filter(user -> user.getLogin().equals(login))
+				.findFirst();
+	}
+
 	private static Optional<User> getById(int id) {
 		return users.stream()
 				.filter(user -> user.getId().equals(id))

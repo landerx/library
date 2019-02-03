@@ -20,5 +20,8 @@
 
 <%= username%>
 INDEX JSP
+
+
+<a href="<%=request.getContextPath()%>/logout">Logout</a>
 </body>
 </html>

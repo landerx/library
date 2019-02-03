@@ -23,6 +23,7 @@ public class SecurityFilter extends HttpFilter {
 		boolean doesRequestURIContainsAuthPaths = requestURI.endsWith("login.jsp") ||
 				requestURI.endsWith("login") ||
 				requestURI.endsWith("register") ||
+				requestURI.endsWith("registerError.jsp") ||
 				requestURI.endsWith("register.jsp");
 		if (!doesRequestURIContainsAuthPaths && username == null) {
 			session.setAttribute("redirectLink", requestURI);
