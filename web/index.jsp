@@ -7,10 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+</head>
+<body>
+
+<%
+    Object username = session.getAttribute("username");
+    username = username != null ? username : "";
+
+%>
+
+<%= username%>
+INDEX JSP
+</body>
 </html>
