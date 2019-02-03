@@ -19,9 +19,10 @@
 %>
 
 <%= username%>
-INDEX JSP
 
-
+<br/>
+<a href="<%=request.getContextPath()%>/books.jsp">Books</a>
+<br/>
 <a href="<%=request.getContextPath()%>/logout">Logout</a>
 </body>
 </html>
