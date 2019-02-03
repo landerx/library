@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.craftioncode.library.users.User;
-import com.craftioncode.library.users.dao.UsersDAO;
+import com.craftioncode.library.domain.users.User;
+import com.craftioncode.library.domain.users.dao.UsersDAO;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {

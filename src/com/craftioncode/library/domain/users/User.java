@@ -1,4 +1,4 @@
-package com.craftioncode.library.users;
+package com.craftioncode.library.domain.users;
 
 import java.util.Objects;
 

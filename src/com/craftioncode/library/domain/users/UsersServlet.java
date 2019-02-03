@@ -1,4 +1,4 @@
-package com.craftioncode.library.users;
+package com.craftioncode.library.domain.users;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.craftioncode.library.users.dao.UsersDAO;
+import com.craftioncode.library.domain.users.dao.UsersDAO;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {

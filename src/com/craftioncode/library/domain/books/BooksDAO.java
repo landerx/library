@@ -1,4 +1,4 @@
-package com.craftioncode.library.books;
+package com.craftioncode.library.domain.books;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.craftioncode.library.users;
+package com.craftioncode.library.domain.users;
 
 public class UserBuilder {
 	private Integer id;

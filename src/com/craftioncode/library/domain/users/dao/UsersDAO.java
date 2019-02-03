@@ -1,11 +1,11 @@
-package com.craftioncode.library.users.dao;
+package com.craftioncode.library.domain.users.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.craftioncode.library.users.User;
-import com.craftioncode.library.users.UserBuilder;
+import com.craftioncode.library.domain.users.User;
+import com.craftioncode.library.domain.users.UserBuilder;
 
 public class UsersDAO {
 

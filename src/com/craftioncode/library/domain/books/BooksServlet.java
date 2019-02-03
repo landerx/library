@@ -1,4 +1,4 @@
-package com.craftioncode.library.books;
+package com.craftioncode.library.domain.books;
 
 import java.io.IOException;
 import java.io.PrintWriter;

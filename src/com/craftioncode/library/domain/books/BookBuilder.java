@@ -1,4 +1,4 @@
-package com.craftioncode.library.books;
+package com.craftioncode.library.domain.books;
 
 public class BookBuilder {
 	private int id;
