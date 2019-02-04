@@ -12,9 +12,9 @@ public class UsersDAO {
 	private static List<User> users = new ArrayList<>();
 
 	static {
-		User user1 = UserBuilder.builder().setId(1).setName("test").setSurname("test").setRole("test").setLogin("test")
+		User user1 = UserBuilder.builder().setName("test").setSurname("test").setRole("test").setLogin("test")
 				.setPassword("test").setCity("test").build();
-		User user2 = UserBuilder.builder().setId(2).setName("test").setSurname("test").setRole("test").setLogin("Admin")
+		User user2 = UserBuilder.builder().setName("test").setSurname("test").setRole("test").setLogin("Admin")
 				.setPassword("admin").setCity("test").build();
 		users.add(user1);
 		users.add(user2);

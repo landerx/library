@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class User {
 
+	private static Integer autoIncrementId = 0;
+
 	private final Integer id;
 
 	private String name;
@@ -18,8 +20,8 @@ public class User {
 
 	private String city;
 
-	public User(Integer id, String name, String surname, String role, String login, String password, String city) {
-		this.id = id;
+	public User(String name, String surname, String role, String login, String password, String city) {
+		this.id = autoIncrementId++;
 		this.name = name;
 		this.surname = surname;
 		this.role = role;

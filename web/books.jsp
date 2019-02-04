@@ -24,6 +24,7 @@
         <th scope="col">Title</th>
         <th scope="col">ISBN</th>
         <th scope="col">Year</th>
+        <th scope="col">Author</th>
         <th scope="col">Action</th>
     </tr>
     </thead>
@@ -38,6 +39,9 @@
         </td>
         <td><%= book.getYear()%>
         </td>
+        </td>
+        <td><%= book.getAuthor()%>
+        </td>
         <td><a href="editBook.jsp?id=<%=book.getId()%>">
             <button class="btn btn-info">Edit</button>
         </a>
@@ -49,6 +53,12 @@
     <%}%>
     </tbody>
 </table>
+
+
+</a>
+<a href="createBook.jsp">
+    <button class="btn btn-success">Create Book</button>
+</a>
 
 </body>
 </html>

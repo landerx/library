@@ -26,7 +26,6 @@ public class UsersServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 
-		String id = req.getParameter("id");
 		String name = req.getParameter("name");
 		String surname = req.getParameter("surname");
 		String role = req.getParameter("role");
@@ -35,7 +34,6 @@ public class UsersServlet extends HttpServlet {
 		String city = req.getParameter("city");
 
 		User user = UserBuilder.builder()
-				.setId(Integer.valueOf(id))
 				.setName(name)
 				.setSurname(surname)
 				.setRole(role)
@@ -46,9 +44,9 @@ public class UsersServlet extends HttpServlet {
 
 		boolean isCreated = UsersDAO.add(user);
 		if (isCreated) {
-			resp.getWriter().write(String.format("user with id %s has been created!", id));
+			resp.getWriter().write(String.format("user with id %s has been created!", user.getId()));
 		} else {
-			resp.getWriter().write(String.format("action failed, user with id %s already exists!", id));
+			resp.getWriter().write(String.format("action failed, user with id %s already exists!", user.getId()));
 		}
 
 	}

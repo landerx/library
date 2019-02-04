@@ -2,7 +2,6 @@ package com.craftioncode.library.register;
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,24 +29,20 @@ public class RegisterServlet extends HttpServlet {
 
 		Optional<User> userByLoginOpt = UsersDAO.getByLogin(login);
 
-		if(userByLoginOpt.isPresent()){
+		if (userByLoginOpt.isPresent()) {
 			resp.sendRedirect("registerError.jsp");
-		}else{
-			boolean isCreated;
-			do {
-				User user = UserBuilder.builder()
-						.setId(new Random().nextInt())
-						.setName(name)
-						.setSurname(surname)
-						.setRole(role)
-						.setLogin(login)
-						.setPassword(password)
-						.setCity(city)
-						.build();
+		} else {
 
-				isCreated = UsersDAO.add(user);
-			} while (!isCreated);
-			resp.sendRedirect("login.jsp?registered=" +login);
+			User user = UserBuilder.builder()
+					.setName(name)
+					.setSurname(surname)
+					.setRole(role)
+					.setLogin(login)
+					.setPassword(password)
+					.setCity(city)
+					.build();
+
+			resp.sendRedirect("login.jsp?registered=" + login);
 		}// else if(userByLoginOpt.isPresent())
 
 	}

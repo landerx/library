@@ -30,7 +30,6 @@ public class BooksServlet extends HttpServlet {
 		String year = req.getParameter("year");
 
 		Book book = BookBuilder.builder()
-				.setId(Integer.valueOf(id))
 				.setAuthor(author)
 				.setIsbn(isbn)
 				.setTitle(title)
@@ -40,9 +39,9 @@ public class BooksServlet extends HttpServlet {
 		boolean isBookCreated = BooksDAO.add(book);
 
 		if (isBookCreated) {
-			resp.getWriter().write(String.format("Book with id %s has been created!", id));
+			resp.getWriter().write(String.format("Book with id %s has been created!", book.getId()));
 		} else {
-			resp.getWriter().write(String.format("action failed, book with id %s already exists!", id));
+			resp.getWriter().write(String.format("action failed, book with id %s already exists!", book.getId()));
 		}
 
 	}

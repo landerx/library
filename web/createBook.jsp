@@ -14,5 +14,55 @@
 </head>
 <body>
 
+<form class="form-signin" action='createBook' method="POST">
+    <div id="legend">
+        <legend class="">Add book</legend>
+    </div>
+
+    <div class="control-group">
+        <!-- Title -->
+        <label class="control-label" for="title">Name</label>
+        <div class="controls">
+            <input type="text" id="title" name="title" placeholder="" class="input-xlarge">
+            <p class="help-block">Title of a book</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- ISBN -->
+        <label class="control-label" for="isbn">ISBN</label>
+        <div class="controls">
+            <input type="text" id="isbn" name="isbn" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide ISBN of a book</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- Year -->
+        <label class="control-label" for="year">Year</label>
+        <div class="controls">
+            <input type="number" id="year" name="year" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide year of publish</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- ISBN -->
+        <label class="control-label" for="author">Author</label>
+        <div class="controls">
+            <input type="text" id="author" name="author" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide Author</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- Button -->
+        <div class="controls">
+            <button class="btn btn-success" type="submit">Add book</button>
+        </div>
+    </div>
+
+</form>
+
 </body>
 </html>

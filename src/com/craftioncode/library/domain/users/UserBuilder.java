@@ -13,11 +13,6 @@ public class UserBuilder {
 		return new UserBuilder();
 	}
 
-	public UserBuilder setId(Integer id) {
-		this.id = id;
-		return this;
-	}
-
 	public UserBuilder setName(String name) {
 		this.name = name;
 		return this;
@@ -49,6 +44,6 @@ public class UserBuilder {
 	}
 
 	public User build() {
-		return new User(id, name, surname, role, login, password, city);
+		return new User( name, surname, role, login, password, city);
 	}
 }

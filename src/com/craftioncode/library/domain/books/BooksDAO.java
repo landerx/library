@@ -9,9 +9,9 @@ public class BooksDAO {
 	private static List<Book> books = new ArrayList<>();
 
 	static {
-		Book book1 = BookBuilder.builder().setId(1).setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
+		Book book1 = BookBuilder.builder().setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
 				.build();
-		Book book2 = BookBuilder.builder().setId(2).setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
+		Book book2 = BookBuilder.builder().setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
 				.build();
 		books.add(book1);
 		books.add(book2);

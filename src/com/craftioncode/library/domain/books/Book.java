@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Book {
 
+	private static int autoIncrementId = 100;
+
 	private final int id;
 
 	private String author;
@@ -14,8 +16,8 @@ public class Book {
 
 	private int year;
 
-	public Book(int id, String author, String title, String isbn, int year) {
-		this.id = id;
+	public Book(String author, String title, String isbn, int year) {
+		this.id = autoIncrementId++;
 		this.author = author;
 		this.title = title;
 		this.isbn = isbn;

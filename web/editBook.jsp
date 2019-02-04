@@ -1,6 +1,6 @@
 <%@ page import="com.craftioncode.library.domain.books.Book" %>
 <%@ page import="com.craftioncode.library.domain.books.BooksDAO" %>
-<%@ page import="java.util.Optional" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
   Date: 03/02/2019
@@ -17,16 +17,12 @@
 <body>
 <%
     String bookId = request.getParameter("id");
-    Book editBook= BooksDAO.getById(Integer.valueOf(bookId)).get();
-
+    Book editBook = BooksDAO.getById(Integer.valueOf(bookId)).get();
 %>
+
 <form class="form-signin" action='editBook' method="POST">
     <div id="legend">
         <legend class="">Edit book</legend>
-    </div>
-
-    <div class="alert alert-danger" role="alert">
-        You need to fill all the fields!
     </div>
 
     <div class="control-group">
@@ -49,6 +45,16 @@
             <input type="text" id="isbn" name="isbn" placeholder="" class="input-xlarge"
                    value="<%= editBook.getIsbn()%>">
             <p class="help-block">Please provide ISBN of a book</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- ISBN -->
+        <label class="control-label" for="author">Author</label>
+        <div class="controls">
+            <input type="text" id="author" name="author" placeholder="" class="input-xlarge"
+                   value="<%= editBook.getAuthor()%>">
+            <p class="help-block">Please provide Author</p>
         </div>
     </div>
 

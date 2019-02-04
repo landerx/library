@@ -14,11 +14,6 @@ public class BookBuilder {
 		return new BookBuilder();
 	}
 
-	public BookBuilder setId(int id) {
-		this.id = id;
-		return this;
-	}
-
 	public BookBuilder setAuthor(String author) {
 		this.author = author;
 		return this;
@@ -40,6 +35,6 @@ public class BookBuilder {
 	}
 
 	public Book build() {
-		return new Book(id, author, title, isbn, year);
+		return new Book( author, title, isbn, year);
 	}
 }
