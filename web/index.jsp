@@ -9,8 +9,10 @@
 <html>
 <head>
     <title>$Title$</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+
 
 <%
     Object username = session.getAttribute("username");

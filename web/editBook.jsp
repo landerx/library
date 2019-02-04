@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.craftioncode.library.domain.books.Book" %>
+<%@ page import="com.craftioncode.library.domain.books.BooksDAO" %>
+<%@ page import="java.util.Optional" %><%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
   Date: 03/02/2019
@@ -9,8 +11,64 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </head>
 <body>
+<%
+    String bookId = request.getParameter("id");
+    Book editBook= BooksDAO.getById(Integer.valueOf(bookId)).get();
 
+%>
+<form class="form-signin" action='editBook' method="POST">
+    <div id="legend">
+        <legend class="">Edit book</legend>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+        You need to fill all the fields!
+    </div>
+
+    <div class="control-group">
+        <!-- ID -->
+        <input type='hidden' name='id' id='bookId' value='<%= editBook.getId()%>'/>
+
+        <!-- Title -->
+        <label class="control-label" for="title">Name</label>
+        <div class="controls">
+            <input type="text" id="title" name="title" placeholder="" class="input-xlarge"
+                   value="<%= editBook.getTitle()%>">
+            <p class="help-block">Title of a book</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- ISBN -->
+        <label class="control-label" for="isbn">ISBN</label>
+        <div class="controls">
+            <input type="text" id="isbn" name="isbn" placeholder="" class="input-xlarge"
+                   value="<%= editBook.getIsbn()%>">
+            <p class="help-block">Please provide ISBN of a book</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- Year -->
+        <label class="control-label" for="year">Year</label>
+        <div class="controls">
+            <input type="number" id="year" name="year" placeholder="" class="input-xlarge"
+                   value="<%= editBook.getYear()%>">
+            <p class="help-block">Please provide year of publish</p>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- Button -->
+        <div class="controls">
+            <button class="btn btn-success" type="submit">Edit book</button>
+        </div>
+    </div>
+
+</form>
 </body>
 </html>

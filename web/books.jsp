@@ -1,5 +1,5 @@
-<%@ page import="com.craftioncode.library.domain.books.Book" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.craftioncode.library.domain.books.Book" %>
 <%@ page import="com.craftioncode.library.domain.books.BooksDAO" %><%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
@@ -36,13 +36,13 @@
         </td>
         <td><%= book.getIsbn()%>
         </td>
-        <td>@<%= book.getYear()%>
+        <td><%= book.getYear()%>
         </td>
         <td><a href="editBook.jsp?id=<%=book.getId()%>">
             <button class="btn btn-info">Edit</button>
         </a>
-            <a href="deleteBook.jsp?id=<%=book.getId()%>">
-                <button class="btn btn-danger">Delete</button>
+            <a href="deleteBook?id=<%=book.getId()%>">
+            <button class="btn btn-danger">Delete</button>
             </a>
         </td>
     </tr>

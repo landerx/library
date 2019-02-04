@@ -47,7 +47,7 @@ public class BooksDAO {
 		return bookOpt.isPresent();
 	}
 
-	private static Optional<Book> getById(int id) {
+	public static Optional<Book> getById(int id) {
 		return books.stream()
 				.filter(book -> book.getId() == id)
 				.findFirst();

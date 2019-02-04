@@ -9,10 +9,15 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </head>
 <body>
 
 ERRORR
+<br/>
+User with that login already exists
+
 
 </body>
 </html>

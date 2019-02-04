@@ -9,12 +9,14 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </head>
 <body>
 
 <%
     String invalidLogin = request.getParameter("invalidLogin");
-    invalidLogin = invalidLogin != null ? invalidLogin : "";
+    invalidLogin = invalidLogin != null ? "invalidLogin" : "";
 
     String logout = request.getParameter("logout");
     logout = logout != null ? "You have been logout sucesfully" : "";
@@ -25,7 +27,6 @@
 %>
 
 <%= registered %>
-
 <form method="post" action="login">
 
     Login:
