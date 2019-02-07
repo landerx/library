@@ -26,7 +26,8 @@ public class SecurityFilter extends HttpFilter {
 				requestURI.endsWith("registerError.jsp") ||
 				requestURI.endsWith("register.jsp") ||
 				requestURI.contains("css") ||
-				requestURI.contains("assets");
+				requestURI.contains("assets") ||
+				requestURI.endsWith("dbAccess");
 		if (!doesRequestURIContainsAuthPaths && username == null) {
 			session.setAttribute("redirectLink", requestURI);
 			res.sendRedirect("login.jsp");
