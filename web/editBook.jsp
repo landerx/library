@@ -1,5 +1,6 @@
 <%@ page import="com.craftioncode.library.domain.books.Book" %>
 <%@ page import="com.craftioncode.library.domain.books.BooksDAO" %>
+<%@ page import="com.craftioncode.library.domain.books.BooksDAO2" %>
 <%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
@@ -17,7 +18,7 @@
 <body>
 <%
     String bookId = request.getParameter("id");
-    Book editBook = BooksDAO.getById(Integer.valueOf(bookId)).get();
+    Book editBook = BooksDAO2.getById(Integer.valueOf(bookId));
 %>
 
 <form class="form-signin" action='editBook' method="POST">

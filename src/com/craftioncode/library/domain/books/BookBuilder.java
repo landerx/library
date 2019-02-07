@@ -34,7 +34,12 @@ public class BookBuilder {
 		return this;
 	}
 
+	public BookBuilder setId(int id) {
+		this.id = id;
+		return this;
+	}
+
 	public Book build() {
-		return new Book( author, title, isbn, year);
+		return new Book(id, author, title, isbn, year);
 	}
 }

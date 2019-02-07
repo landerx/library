@@ -19,7 +19,7 @@ public class EditBookServlet extends HttpServlet {
 		String title = req.getParameter("title");
 		String year = req.getParameter("year");
 
-		BooksDAO.update(Integer.valueOf(id), author, title, isbn, Integer.valueOf(year));
+		BooksDAO2.update(Integer.valueOf(id), author, title, isbn, Integer.valueOf(year));
 		resp.sendRedirect("books.jsp");
 	}
 }

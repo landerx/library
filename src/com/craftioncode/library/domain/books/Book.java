@@ -6,7 +6,7 @@ public class Book {
 
 	private static int autoIncrementId = 100;
 
-	private final int id;
+	private int id;
 
 	private String author;
 
@@ -24,8 +24,20 @@ public class Book {
 		this.year = year;
 	}
 
+	public Book(int id, String author, String title, String isbn, int year) {
+		this.id = id;
+		this.author = author;
+		this.title = title;
+		this.isbn = isbn;
+		this.year = year;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getAuthor() {
@@ -59,7 +71,6 @@ public class Book {
 	public void setYear(int year) {
 		this.year = year;
 	}
-
 
 	@Override
 	public boolean equals(Object o) {

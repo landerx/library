@@ -7,7 +7,7 @@ public class DBManager {
 
 	private static String DB_URL = "jdbc:mysql://localhost:3306/jee_library" +
 			"?user=root&password=root&autoReconnect=true&useSSL=false&serverTimezone=UTC" +
-			"&maxReconnects=10&failOverReadOnly=false";
+			"&maxReconnects=10&failOverReadOnly=false&allowPublicKeyRetrieval=true";
 	private static String DB_USERNAME = "root";
 	private static String DB_PASSWORD = "root";
 	private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";

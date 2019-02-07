@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.craftioncode.library.db.DBManager;
 import com.craftioncode.library.domain.users.User;
@@ -15,10 +16,14 @@ public class UsersDAOV2 {
 
 	public static void addTestData() {
 		try {
+			Random random = new Random();
+
 			Connection connection = DBManager.openConnection();
-			User user1 = UserBuilder.builder().setName("test").setSurname("test").setRole("test").setLogin("test")
+			User user1 = UserBuilder.builder().setName("test").setSurname("test").setRole("test")
+					.setLogin("test" + random.nextInt())
 					.setPassword("test").setCity("test").build();
-			User user2 = UserBuilder.builder().setName("test").setSurname("test").setRole("test").setLogin("Admin")
+			User user2 = UserBuilder.builder().setName("test").setSurname("test").setRole("test")
+					.setLogin("Admin" + random.nextInt())
 					.setPassword("admin").setCity("test").build();
 			add(user1, connection);
 			add(user2, connection);
@@ -40,7 +45,7 @@ public class UsersDAOV2 {
 	public static List<User> getAll() {
 		List<User> users = new ArrayList<>();
 		try (Connection connection = DBManager.openConnection()) {
-		//use prepared statement -> sql injection avoid
+			//use prepared statement -> sql injection avoid
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM user");
 			while (resultSet.next()) {

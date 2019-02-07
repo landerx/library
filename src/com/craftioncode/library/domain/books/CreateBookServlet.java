@@ -27,7 +27,7 @@ public class CreateBookServlet extends HttpServlet {
 				.setYear(Integer.valueOf(year))
 				.build();
 
-		BooksDAO.add(book);
+		BooksDAO2.add(book);
 		resp.sendRedirect("books.jsp");
 	}
 }

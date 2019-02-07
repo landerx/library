@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.craftioncode.library.domain.books.Book" %>
-<%@ page import="com.craftioncode.library.domain.books.BooksDAO" %><%--
+<%@ page import="com.craftioncode.library.domain.books.BooksDAO2" %>
+<%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
   Date: 03/02/2019
@@ -15,7 +16,7 @@
 <body>
 
 <%
-    List<Book> books = BooksDAO.getAll();
+    List<Book> books = BooksDAO2.getAll();
 %>
 <table class="table">
     <thead>
@@ -46,7 +47,7 @@
             <button class="btn btn-info">Edit</button>
         </a>
             <a href="deleteBook?id=<%=book.getId()%>">
-            <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger">Delete</button>
             </a>
         </td>
     </tr>
