@@ -26,5 +26,7 @@
 <a href="<%=request.getContextPath()%>/books.jsp">Books</a>
 <br/>
 <a href="<%=request.getContextPath()%>/logout">Logout</a>
+<br/>
+<a href="<%=request.getContextPath()%>/editProfile.jsp">update profile</a>
 </body>
 </html>

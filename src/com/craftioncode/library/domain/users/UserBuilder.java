@@ -9,7 +9,7 @@ public class UserBuilder {
 	private String password;
 	private String city;
 
-	public static UserBuilder builder(){
+	public static UserBuilder builder() {
 		return new UserBuilder();
 	}
 
@@ -49,6 +49,6 @@ public class UserBuilder {
 	}
 
 	public User build() {
-		return new User( name, surname, role, login, password, city);
+		return new User(id, name, surname, role, login, password, city);
 	}
 }

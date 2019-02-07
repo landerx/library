@@ -1,6 +1,7 @@
 package com.craftioncode.library.domain.users.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,6 +67,29 @@ public class UsersDAOV2 {
 		return users;
 	}
 
+	public static User getByLogin(String name) {
+		User user = null;
+		try (Connection connection = DBManager.openConnection()) {
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE login=?;");
+			statement.setString(1, name);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				user = UserBuilder.builder()
+						.setSurname(resultSet.getString("surname"))
+						.setLogin(resultSet.getString("login"))
+						.setCity(resultSet.getString("city"))
+						.setName(resultSet.getString("name"))
+						.setPassword(resultSet.getString("password"))
+						.setRole(resultSet.getString("role"))
+						.setId(resultSet.getInt("id"))
+						.build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 	private static String insertUserToDB(User user) {
 		return String.format("INSERT INTO user (`name`, `surname`, `role`, `login`, `password`, `city`)" +
 						" VALUES ('%s','%s','%s','%s','%s','%s')",
@@ -77,4 +101,23 @@ public class UsersDAOV2 {
 				user.getCity());
 	}
 
+	public static void update(User user) {
+		try (Connection connection = DBManager.openConnection()) {
+			PreparedStatement statement = connection.prepareStatement(
+					"Update user SET name = ?, surname = ?, role = ?, login = ?, " +
+							"password = ?, city = ? WHERE id = ?;");
+			statement.setString(1, user.getName());
+			statement.setString(2, user.getSurname());
+			statement.setString(3, user.getRole());
+			statement.setString(4, user.getLogin());
+			statement.setString(5, user.getPassword());
+			statement.setString(6, user.getCity());
+			statement.setInt(7, user.getId());
+			statement.executeUpdate();
+			statement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
 }

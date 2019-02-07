@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.craftioncode.library.domain.users.User;
-import com.craftioncode.library.domain.users.dao.UsersDAO;
+import com.craftioncode.library.domain.users.dao.UsersDAOV2;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
 
-		Optional<User> userOpt = UsersDAO.getAll()
+		Optional<User> userOpt = UsersDAOV2.getAll()
 				.stream()
 				.filter(user -> user.getLogin().equals(login) && user.getPassword().equals(password))
 				.findFirst();
