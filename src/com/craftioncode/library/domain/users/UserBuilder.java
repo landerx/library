@@ -23,6 +23,11 @@ public class UserBuilder {
 		return this;
 	}
 
+	public UserBuilder setId(int id) {
+		this.id = id;
+		return this;
+	}
+
 	public UserBuilder setRole(String role) {
 		this.role = role;
 		return this;

@@ -6,7 +6,8 @@ public class User {
 
 	private static Integer autoIncrementId = 0;
 
-	private final Integer id;
+
+	private Integer id;
 
 	private String name;
 
@@ -21,7 +22,11 @@ public class User {
 	private String city;
 
 	public User(String name, String surname, String role, String login, String password, String city) {
-		this.id = autoIncrementId++;
+		this(autoIncrementId++, name, surname, role, login, password, city);
+	}
+
+	public User(int id, String name, String surname, String role, String login, String password, String city) {
+		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.role = role;
@@ -40,6 +45,10 @@ public class User {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {

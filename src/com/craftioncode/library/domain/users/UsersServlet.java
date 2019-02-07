@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.craftioncode.library.domain.users.dao.UsersDAO;
+import com.craftioncode.library.domain.users.dao.UsersDAOV2;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {
@@ -19,7 +20,7 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter writer = resp.getWriter();
 
-		writer.write(UsersDAO.getAll().toString());
+		writer.write(UsersDAOV2.getAll().toString());
 	}
 
 	@Override
