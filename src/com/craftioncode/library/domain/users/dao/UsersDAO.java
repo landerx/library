@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.craftioncode.library.domain.users.User;
 import com.craftioncode.library.domain.users.UserBuilder;
 
+@Deprecated
 public class UsersDAO {
 
 	private static List<User> users = new ArrayList<>();

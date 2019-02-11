@@ -9,13 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.ejb.Stateless;
+
 import com.craftioncode.library.db.DBManager;
 import com.craftioncode.library.domain.users.User;
 import com.craftioncode.library.domain.users.UserBuilder;
 
+@Stateless
 public class UsersDAOV2 {
 
-	public static void addTestData() {
+	public void addTestData() {
 		try {
 			Random random = new Random();
 
@@ -35,15 +38,22 @@ public class UsersDAOV2 {
 
 	}
 
-	public static void add(User user, Connection connection) throws SQLException {
+	public void add(User user, Connection connection) throws SQLException {
 		Statement statement = connection.createStatement();
 		String sql = insertUserToDB(user);
 		statement.executeUpdate(sql);
 		statement.close();
-
 	}
 
-	public static List<User> getAll() {
+	public void add(User user) {
+		try (Connection connection = DBManager.openConnection()) {
+			add(user, connection);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<User> getAll() {
 		List<User> users = new ArrayList<>();
 		try (Connection connection = DBManager.openConnection()) {
 			//use prepared statement -> sql injection avoid
@@ -67,7 +77,7 @@ public class UsersDAOV2 {
 		return users;
 	}
 
-	public static User getByLogin(String name) {
+	public User getByLogin(String name) {
 		User user = null;
 		try (Connection connection = DBManager.openConnection()) {
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE login=?;");
@@ -90,7 +100,7 @@ public class UsersDAOV2 {
 		return user;
 	}
 
-	private static String insertUserToDB(User user) {
+	private String insertUserToDB(User user) {
 		return String.format("INSERT INTO user (`name`, `surname`, `role`, `login`, `password`, `city`)" +
 						" VALUES ('%s','%s','%s','%s','%s','%s')",
 				user.getName(),
@@ -101,7 +111,7 @@ public class UsersDAOV2 {
 				user.getCity());
 	}
 
-	public static void update(User user) {
+	public void update(User user) {
 		try (Connection connection = DBManager.openConnection()) {
 			PreparedStatement statement = connection.prepareStatement(
 					"Update user SET name = ?, surname = ?, role = ?, login = ?, " +
@@ -119,5 +129,19 @@ public class UsersDAOV2 {
 			e.printStackTrace();
 
 		}
+	}
+
+	public void delete(int id) {
+		try (Connection connection = DBManager.openConnection()) {
+			PreparedStatement statement = connection.prepareStatement(
+					"DELETE FROM user WHERE id =?;");
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			statement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
 	}
 }

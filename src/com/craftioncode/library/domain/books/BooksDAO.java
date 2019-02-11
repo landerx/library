@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Deprecated
 public class BooksDAO {
 
 	private static List<Book> books = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.craftioncode.library.domain.users;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,9 @@ import com.craftioncode.library.domain.users.dao.UsersDAOV2;
 
 @WebServlet("/editProfile")
 public class EditUserServlet extends HttpServlet {
+
+	@EJB
+	private UsersDAOV2 usersDAOV2;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,7 +39,7 @@ public class EditUserServlet extends HttpServlet {
 				.setCity(city)
 				.build();
 
-		UsersDAOV2.update(user);
+		usersDAOV2.update(user);
 		HttpSession session = req.getSession();
 		session.setAttribute("username", user.getLogin());
 		resp.sendRedirect("index.jsp");

@@ -3,24 +3,27 @@ package com.craftioncode.library.domain.users;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.craftioncode.library.domain.users.dao.UsersDAO;
 import com.craftioncode.library.domain.users.dao.UsersDAOV2;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {
+
+	@EJB
+	private UsersDAOV2 usersDAOV2;
 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter writer = resp.getWriter();
 
-		writer.write(UsersDAOV2.getAll().toString());
+		writer.write(usersDAOV2.getAll().toString());
 	}
 
 	@Override
@@ -43,13 +46,8 @@ public class UsersServlet extends HttpServlet {
 				.setCity(city)
 				.build();
 
-		boolean isCreated = UsersDAO.add(user);
-		if (isCreated) {
-			resp.getWriter().write(String.format("user with id %s has been created!", user.getId()));
-		} else {
-			resp.getWriter().write(String.format("action failed, user with id %s already exists!", user.getId()));
-		}
-
+		usersDAOV2.add(user);
+		resp.getWriter().write(String.format("user with id %s has been created!", user.getId()));
 	}
 
 	//example request
@@ -67,25 +65,28 @@ public class UsersServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		String city = req.getParameter("city");
 
-		boolean isUserUpdated = UsersDAO.update(Integer.valueOf(id), name, surname, login, password, city, role);
+		User user = UserBuilder.builder()
+				.setId(Integer.valueOf(id))
+				.setName(name)
+				.setSurname(surname)
+				.setLogin(login)
+				.setPassword(password)
+				.setCity(city)
+				.setRole(role)
+				.build();
 
-		if (isUserUpdated) {
-			resp.getWriter().write(String.format("user with id %s has been updated!", id));
-		} else {
-			resp.getWriter().write(String.format("user with id %s DOESNT FOUND!", id));
-		}
+		usersDAOV2.update(user);
+		resp.getWriter().write(String.format("user with id %s has been updated!", id));
+
 	}
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 
-		boolean isUserDeleted = UsersDAO.delete(Integer.valueOf(id));
-		if (isUserDeleted) {
-			resp.getWriter().write(String.format("user with id %s has been deleted!", id));
-		} else {
-			resp.getWriter().write(String.format("user with id %s DOESNT FOUND!", id));
-		}
+		usersDAOV2.delete(Integer.valueOf(id));
+		resp.getWriter().write(String.format("user with id %s has been deleted!", id));
+
 	}
 
 }

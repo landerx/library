@@ -2,15 +2,21 @@ package com.craftioncode.library.domain.books;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.craftioncode.library.domain.users.dao.UsersDAOV2;
+
 
 @WebServlet("/createBook")
 public class CreateBookServlet extends HttpServlet {
+
+	@EJB
+	private BooksDAO2 booksDAO2;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +33,7 @@ public class CreateBookServlet extends HttpServlet {
 				.setYear(Integer.valueOf(year))
 				.build();
 
-		BooksDAO2.add(book);
+		booksDAO2.add(book);
 		resp.sendRedirect("books.jsp");
 	}
 }
