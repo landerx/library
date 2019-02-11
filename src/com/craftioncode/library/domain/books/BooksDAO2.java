@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 
 import com.craftioncode.library.db.DBManager;
@@ -15,8 +17,20 @@ import com.craftioncode.library.db.DBManager;
 @Stateless
 public class BooksDAO2 {
 
+	private Connection connection;
+
+	@PostConstruct
+	public void init() {
+		connection = DBManager.openConnection();
+	}
+
+	@PreDestroy
+	public void close() {
+		DBManager.closeConnection(connection);
+	}
+
 	public void addTestData() {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			Book book1 = BookBuilder.builder().setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
 					.build();
 			Book book2 = BookBuilder.builder().setAuthor("test").setTitle("test").setIsbn("test").setYear(2000)
@@ -29,7 +43,7 @@ public class BooksDAO2 {
 	}
 
 	public void add(Book book) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			add(book, connection);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,7 +65,7 @@ public class BooksDAO2 {
 
 	public List<Book> getAll() {
 		List<Book> books = new ArrayList<>();
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM book");
 			while (resultSet.next()) {
@@ -71,7 +85,7 @@ public class BooksDAO2 {
 	}
 
 	public void delete(int id) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"DELETE FROM book WHERE id =?;");
 			statement.setInt(1, id);
@@ -85,7 +99,7 @@ public class BooksDAO2 {
 	}
 
 	public void update(int id, String author, String title, String isbn, int year) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"Update book SET author = ?, title = ?, isbn =?, year =? WHERE id = ?;");
 			statement.setString(1, author);
@@ -103,7 +117,7 @@ public class BooksDAO2 {
 
 	public Book getById(int id) {
 		Book book = null;
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM book WHERE id=?;");
 			statement.setInt(1, id);
 			ResultSet resultSet = statement.executeQuery();

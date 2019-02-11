@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 
 import com.craftioncode.library.db.DBManager;
@@ -18,11 +20,21 @@ import com.craftioncode.library.domain.users.UserBuilder;
 @Stateless
 public class UsersDAOV2 {
 
+	private Connection connection;
+
+	@PostConstruct
+	public void init() {
+		connection = DBManager.openConnection();
+	}
+
+	@PreDestroy
+	public void close() {
+		DBManager.closeConnection(connection);
+	}
+
 	public void addTestData() {
 		try {
 			Random random = new Random();
-
-			Connection connection = DBManager.openConnection();
 			User user1 = UserBuilder.builder().setName("test").setSurname("test").setRole("test")
 					.setLogin("test" + random.nextInt())
 					.setPassword("test").setCity("test").build();
@@ -46,16 +58,16 @@ public class UsersDAOV2 {
 	}
 
 	public void add(User user) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			add(user, connection);
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public List<User> getAll() {
 		List<User> users = new ArrayList<>();
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			//use prepared statement -> sql injection avoid
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM user");
@@ -79,7 +91,7 @@ public class UsersDAOV2 {
 
 	public User getByLogin(String name) {
 		User user = null;
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE login=?;");
 			statement.setString(1, name);
 			ResultSet resultSet = statement.executeQuery();
@@ -112,7 +124,7 @@ public class UsersDAOV2 {
 	}
 
 	public void update(User user) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"Update user SET name = ?, surname = ?, role = ?, login = ?, " +
 							"password = ?, city = ? WHERE id = ?;");
@@ -131,8 +143,9 @@ public class UsersDAOV2 {
 		}
 	}
 
+
 	public void delete(int id) {
-		try (Connection connection = DBManager.openConnection()) {
+		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"DELETE FROM user WHERE id =?;");
 			statement.setInt(1, id);

@@ -14,7 +14,8 @@
 </head>
 <body>
 <%
-    User editUser = UsersDAOV2.getByLogin(request.getSession().getAttribute("username").toString());
+    UsersDAOV2 usersDAOV2 = new UsersDAOV2();
+    User editUser = usersDAOV2.getByLogin(request.getSession().getAttribute("username").toString());
 
 %>
 <form class="form-signin" action='editProfile' method="POST">

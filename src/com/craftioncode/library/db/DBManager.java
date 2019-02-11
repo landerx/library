@@ -2,6 +2,7 @@ package com.craftioncode.library.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBManager {
 
@@ -12,11 +13,24 @@ public class DBManager {
 	private static String DB_PASSWORD = "root";
 	private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
-	public static Connection openConnection() throws Exception {
-		Class.forName(JDBC_DRIVER).newInstance();
-		return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+	public static Connection openConnection() {
+		Connection connection = null;
+		try {
+			Class.forName(JDBC_DRIVER).newInstance();
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return connection;
 	}
 
+	public static void closeConnection(Connection connection) {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

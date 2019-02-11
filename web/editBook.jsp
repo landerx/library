@@ -16,8 +16,9 @@
 </head>
 <body>
 <%
+    BooksDAO2 booksDAO2 = new BooksDAO2();
     String bookId = request.getParameter("id");
-    Book editBook = BooksDAO2.getById(Integer.valueOf(bookId));
+    Book editBook = booksDAO2.getById(Integer.valueOf(bookId));
 %>
 
 <form class="form-signin" action='editBook' method="POST">

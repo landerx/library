@@ -16,7 +16,8 @@
 <body>
 
 <%
-    List<Book> books = BooksDAO2.getAll();
+    BooksDAO2 booksDAO2 = new BooksDAO2();
+    List<Book> books = booksDAO2.getAll();
 %>
 <table class="table">
     <thead>
