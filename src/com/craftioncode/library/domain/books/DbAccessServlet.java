@@ -20,19 +20,17 @@ public class DbAccessServlet extends HttpServlet {
 	private UsersDAOV2 usersDAOV2;
 	@EJB
 	private BooksDAO2 booksDAO2;
+	@EJB
+	private DBManager dbManager;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		usersDAOV2.addTestData();
 		booksDAO2.addTestData();
 
-		try (Connection connection = DBManager.openConnection()) {
-			resp.getWriter().write("test123");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		Connection connection = dbManager.openConnection();
+		resp.getWriter().write("test");
+		dbManager.closeConnection(connection);
 
 		//		UsersDAOV2.addTestData();
 		//		resp.getWriter().write("testadd");

@@ -1,6 +1,5 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.craftioncode.library.domain.books.Book" %>
-<%@ page import="com.craftioncode.library.domain.books.BooksDAO2" %>
 <%--
   Created by IntelliJ IDEA.
   User: piotrlandzwojczak
@@ -16,8 +15,7 @@
 <body>
 
 <%
-    BooksDAO2 booksDAO2 = new BooksDAO2();
-    List<Book> books = booksDAO2.getAll();
+    List<Book> books = (List<Book>) request.getAttribute("books");
 %>
 <table class="table">
     <thead>

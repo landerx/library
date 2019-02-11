@@ -34,6 +34,6 @@ public class CreateBookServlet extends HttpServlet {
 				.build();
 
 		booksDAO2.add(book);
-		resp.sendRedirect("books.jsp");
+		resp.sendRedirect("booksList");
 	}
 }

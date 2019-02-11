@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.craftioncode.library.db.DBManager;
@@ -22,14 +23,17 @@ public class UsersDAOV2 {
 
 	private Connection connection;
 
+	@EJB
+	private DBManager dbManager;
+
 	@PostConstruct
 	public void init() {
-		connection = DBManager.openConnection();
+		connection = dbManager.openConnection();
 	}
 
 	@PreDestroy
 	public void close() {
-		DBManager.closeConnection(connection);
+		dbManager.closeConnection(connection);
 	}
 
 	public void addTestData() {

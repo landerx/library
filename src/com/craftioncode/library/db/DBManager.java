@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class DBManager {
 
 	private static String DB_URL = "jdbc:mysql://localhost:3306/jee_library" +
@@ -13,7 +16,7 @@ public class DBManager {
 	private static String DB_PASSWORD = "root";
 	private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
-	public static Connection openConnection() {
+	public  Connection openConnection() {
 		Connection connection = null;
 		try {
 			Class.forName(JDBC_DRIVER).newInstance();
@@ -24,7 +27,7 @@ public class DBManager {
 		return connection;
 	}
 
-	public static void closeConnection(Connection connection) {
+	public  void closeConnection(Connection connection) {
 		try {
 			connection.close();
 		} catch (SQLException e) {

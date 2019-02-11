@@ -23,7 +23,7 @@
 <%= username%>
 
 <br/>
-<a href="<%=request.getContextPath()%>/books.jsp">Books</a>
+<a href="<%=request.getContextPath()%>/booksList">Books</a>
 <br/>
 <a href="<%=request.getContextPath()%>/logout">Logout</a>
 <br/>
